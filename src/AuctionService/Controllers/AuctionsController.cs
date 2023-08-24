@@ -112,7 +112,7 @@ public class AuctionsController : ControllerBase
 
         if(auction.Seller != User.Identity.Name) return Forbid();
 
-        await _publishEndpoint.Publish(_mapper.Map<AuctionDeleted>(new { Id = auction.Id.ToString() }));
+        await _publishEndpoint.Publish<AuctionDeleted>(new { Id = auction.Id.ToString() });
 
         _context.Auctions.Remove(auction);
 
