@@ -12,10 +12,11 @@ public class AuctionCreatedConsumer : IConsumer<AuctionCreated>
     {
         _hubContext = hubContext;
     }
+
     public async Task Consume(ConsumeContext<AuctionCreated> context)
     {
-        Console.WriteLine("--> Auction finished message received");
+        Console.WriteLine("--> auction created message received");
 
-        await _hubContext.Clients.All.SendAsync("AuctionFinished",context.Message);
+        await _hubContext.Clients.All.SendAsync("AuctionCreated", context.Message);
     }
 }
